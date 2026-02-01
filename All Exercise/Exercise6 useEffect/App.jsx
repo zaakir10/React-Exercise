@@ -1,4 +1,4 @@
-import GreetingTitle from "./GreetingTitle";
+import GreetingTitle from "../Exercise6 useEffect/GreetingTitle";
 
 function App() {
   return (
