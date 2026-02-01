@@ -1,0 +1,34 @@
+.app {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  margin-bottom: 10px;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+}
+
+.todoInput {
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.addBtn {
+  padding: 5px 10px;
+}
+
+.todoList {
+  list-style: none;
+  padding: 0;
+}
+
+.todoItem {
+  margin-bottom: 5px;
+}
+
+.deleteBtn {
+  margin-left: 10px;
+}
