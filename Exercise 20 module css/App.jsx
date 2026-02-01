@@ -1,47 +1,44 @@
-import { useContext, useState } from "react";
-import { TodoContext } from "./TodoContext";
+import { useState } from "react";
+import styles from "./App.module.css";
 
-export default function App() {
-  const { state, dispatch } = useContext(TodoContext);
+function App() {
+  const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
 
   const addTodo = () => {
     if (!text.trim()) return;
-
-    dispatch({
-      type: "ADD_TODO",
-      payload: {
-        id: Date.now(),
-        text,
-      },
-    });
-
+    setTodos([...todos, { id: Date.now(), text }]);
     setText("");
   };
 
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Todo App with Context and Reducer</h2>
+    <div className={styles.app}>
+      <h2 className={styles.title}>Todo App with CSS Modules</h2>
 
-      <input
-        type="text"
-        placeholder="Enter a new todo"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <button onClick={addTodo}>Add</button>
+      <div className={styles.inputGroup}>
+        <input
+          className={styles.todoInput}
+          type="text"
+          placeholder="Enter a new todo"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <button className={styles.addBtn} onClick={addTodo}>
+          Add
+        </button>
+      </div>
 
-      <ul>
-        {state.todos.map((todo) => (
-          <li key={todo.id}>
-            • {todo.text}{" "}
+      <ul className={styles.todoList}>
+        {todos.map((todo) => (
+          <li className={styles.todoItem} key={todo.id}>
+            {todo.text}
             <button
-              onClick={() =>
-                dispatch({
-                  type: "DELETE_TODO",
-                  payload: todo.id,
-                })
-              }
+              className={styles.deleteBtn}
+              onClick={() => deleteTodo(todo.id)}
             >
               Delete
             </button>
@@ -51,3 +48,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;
